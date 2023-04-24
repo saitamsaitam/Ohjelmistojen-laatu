@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>RPSTestit.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">RPSTestit (22 Apr 2023 15:56:02)</a> &gt; <a href="../../index.html" class="el_group">KiviPaperiSakset</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">testit</a> &gt; <span class="el_source">RPSTestit.java</span></div><h1>RPSTestit.java</h1><pre class="source lang-java linenums">package testit;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import kivipaperisakset.Pelaaja;
+import kivipaperisakset.Peli;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+<span class="fc" id="L11">public class RPSTestit {</span>
+
+	private Pelaaja pelaaja;
+
+	@BeforeEach
+	void setUp() {
+<span class="fc" id="L17">		pelaaja = new Pelaaja();</span>
+<span class="fc" id="L18">	}</span>
+
+	/**
+	 * Tarkistaa, että pelaajanValinta() palauttaa joko &quot;kivi&quot;, &quot;paperi&quot; tai
+	 * &quot;sakset&quot;
+	 */
+	@Test
+	void testPelaajanValinta() {
+<span class="fc" id="L26">		String valinta = pelaaja.pelaajanValinta();</span>
+<span class="pc bpc" id="L27" title="5 of 6 branches missed.">		assertTrue(valinta.equals(&quot;kivi&quot;) || valinta.equals(&quot;paperi&quot;) || valinta.equals(&quot;sakset&quot;));</span>
+<span class="fc" id="L28">	}</span>
+
+	/**
+	 * Testaa, että setVoitot() kasvattaa voittojen määrää oikein
+	 */
+	@Test
+	void testSetVoitot() {
+<span class="fc" id="L35">		assertEquals(0, pelaaja.getVoitot());</span>
+<span class="fc" id="L36">		pelaaja.setVoitot();</span>
+<span class="fc" id="L37">		assertEquals(1, pelaaja.getVoitot());</span>
+<span class="fc" id="L38">		pelaaja.setVoitot();</span>
+<span class="fc" id="L39">		assertEquals(2, pelaaja.getVoitot());</span>
+<span class="fc" id="L40">	}</span>
+
+	/**
+	 * Testaa, että getVoitot() palauttaa oikean määrän voittoja
+	 */
+	@Test
+	void testGetVoitot() {
+<span class="fc" id="L47">		assertEquals(0, pelaaja.getVoitot());</span>
+<span class="fc" id="L48">		pelaaja.setVoitot();</span>
+<span class="fc" id="L49">		pelaaja.setVoitot();</span>
+<span class="fc" id="L50">		assertEquals(2, pelaaja.getVoitot());</span>
+<span class="fc" id="L51">	}</span>
+
+	/**
+	 * Testaa, että pelisilmukka pyörii vähintään kerran ja että pelattujen pelien
+	 * määrä ja tasapelit kasvavat oikein
+	 */
+	@Test
+	public void testGameLoop() {
+
+<span class="fc" id="L60">		Peli.main(new String[0]); // start the game</span>
+
+<span class="pc bpc" id="L62" title="1 of 2 branches missed.">		assertTrue(Peli.pelatutPelit &gt; 1, &quot;The game loop should run at least once.&quot;);</span>
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">		assertTrue(Peli.tasapelit &gt;= 0, &quot;The number of ties should be non-negative.&quot;);</span>
+<span class="fc" id="L64">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span>RPSTestit (22 Apr 2023 15:56:02)</div></body></html>

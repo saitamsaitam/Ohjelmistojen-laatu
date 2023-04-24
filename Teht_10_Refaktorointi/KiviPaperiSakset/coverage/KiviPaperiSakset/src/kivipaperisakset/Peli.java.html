@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Peli.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">RPSTestit (22 Apr 2023 15:56:02)</a> &gt; <a href="../../index.html" class="el_group">KiviPaperiSakset</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">kivipaperisakset</a> &gt; <span class="el_source">Peli.java</span></div><h1>Peli.java</h1><pre class="source lang-java linenums">package kivipaperisakset;
+
+/**
+ * Kivi-paperi-sakset -pelin pääluokka
+ * 
+ * Luo kaksi instanssia pelaaja luokasta, jotka edustaa pelaajia. Sen jälkeen
+ * peli pyörii loopilla niin kauan kunnes toinen pelaajista pääsee kolmeen
+ * voittoon. Jokaisella kierroksella pelaajat valitsevat satunnaisesti kiven,
+ * paperin tai sakset, ja voittaja määritetään pelin sääntöjen mukaan. Jokaisen
+ * kierroksen jälkeen voittojen ja tasapelien määrä tulostetaan konsoliin.
+ * 
+ * @author Ira Dook
+ */
+<span class="nc" id="L14">public class Peli {</span>
+
+<span class="fc" id="L16">	public static int pelatutPelit = 1; // Pelattujen pelien lkm. Alustetaan ykköseksi koska peli alkaa erästä yksi</span>
+<span class="fc" id="L17">	public static int tasapelit = 0; // Tasapelien lkm</span>
+
+	public static void main(String args[]) {
+
+<span class="fc" id="L21">		Pelaaja p1 = new Pelaaja();</span>
+<span class="fc" id="L22">		Pelaaja p2 = new Pelaaja();</span>
+
+<span class="fc" id="L24">		boolean peliLoppui = false;</span>
+
+		String p1Valinta;
+		String p2Valinta;
+
+		do {
+<span class="fc" id="L30">			System.out.println(&quot;===================== &quot; + &quot;Erä: &quot; + pelatutPelit + &quot; =====================\n&quot;);</span>
+<span class="fc" id="L31">			System.out.println(&quot;Tasapelien lukumäärä: &quot; + tasapelit);</span>
+<span class="fc" id="L32">			System.out.println(&quot;Pelaaja 1:llä koossa &quot; + p1.getVoitot() + &quot; voittoa.&quot;);</span>
+<span class="fc" id="L33">			System.out.println(&quot;Pelaaja 2:llä koossa &quot; + p2.getVoitot() + &quot; voittoa.\n&quot;);</span>
+
+<span class="fc" id="L35">			p1Valinta = p1.pelaajanValinta();</span>
+<span class="fc" id="L36">			p2Valinta = p2.pelaajanValinta();</span>
+
+<span class="fc" id="L38">			System.out.println(&quot;Pelaaja 1 valitsi : &quot; + p1Valinta);</span>
+<span class="fc" id="L39">			System.out.println(&quot;Pelaaja 2 valitsi : &quot; + p2Valinta + &quot;\n&quot;);</span>
+
+			// Allaolevassa pätkässä on yritetty eri tapoja saada
+			// lukumäärän laskeminen toimimaan oikein.
+			// Ei tää kyllä vieläkään skulaa - KORJAA!
+
+<span class="pc bpc" id="L45" title="1 of 4 branches missed.">			if ((p1Valinta.equals(&quot;kivi&quot;)) &amp;&amp; (p2Valinta.equals(&quot;paperi&quot;))) {</span>
+<span class="nc" id="L46">				System.out.println(&quot;*** Pelaaja 2 voittaa ***\n&quot;);</span>
+<span class="nc" id="L47">				p2.setVoitot();</span>
+<span class="pc bpc" id="L48" title="1 of 4 branches missed.">			} else if ((p1Valinta.equals(&quot;paperi&quot;)) &amp;&amp; (p2Valinta.equals(&quot;kivi&quot;))) {</span>
+<span class="fc" id="L49">				System.out.println(&quot;*** Pelaaja 1 voittaa ***\n&quot;);</span>
+<span class="fc" id="L50">				p1.setVoitot();</span>
+<span class="pc bpc" id="L51" title="1 of 4 branches missed.">			} else if ((p1Valinta.equals(&quot;kivi&quot;)) &amp;&amp; (p2Valinta.equals(&quot;sakset&quot;))) {</span>
+<span class="nc" id="L52">				System.out.println(&quot;*** Pelaaja 1 voittaa ***\n&quot;);</span>
+<span class="nc" id="L53">				p1.setVoitot();</span>
+<span class="pc bfc" id="L54" title="All 4 branches covered.">			} else if ((p1Valinta.equals(&quot;sakset&quot;)) &amp;&amp; (p2Valinta.equals(&quot;kivi&quot;))) {</span>
+<span class="fc" id="L55">				System.out.println(&quot;*** Pelaaja 2 voittaa ***\n&quot;);</span>
+<span class="fc" id="L56">				p2.setVoitot();</span>
+<span class="pc bpc" id="L57" title="1 of 4 branches missed.">			} else if ((p1Valinta.equals(&quot;sakset&quot;)) &amp;&amp; (p2Valinta.equals(&quot;paperi&quot;))) {</span>
+<span class="nc" id="L58">				System.out.println(&quot;*** Pelaaja 1 voittaa ***\n&quot;);</span>
+<span class="nc" id="L59">				p1.setVoitot();</span>
+<span class="pc bpc" id="L60" title="3 of 4 branches missed.">			} else if ((p1Valinta.equals(&quot;paperi&quot;)) &amp;&amp; (p2Valinta.equals(&quot;sakset&quot;))) {</span>
+<span class="nc" id="L61">				System.out.println(&quot;*** Pelaaja 2 voittaa ***\n&quot;);</span>
+<span class="nc" id="L62">				p2.setVoitot();</span>
+			}
+<span class="fc bfc" id="L64" title="All 2 branches covered.">			if (p1Valinta.equals(p2Valinta)) {</span>
+<span class="fc" id="L65">				tasapelit++;</span>
+<span class="fc" id="L66">				System.out.println(&quot;*** Tasapeli ***\n&quot;);</span>
+			}
+<span class="fc" id="L68">			pelatutPelit++;</span>
+<span class="pc bpc" id="L69" title="1 of 4 branches missed.">			if ((p1.getVoitot() &gt;= 3) || (p2.getVoitot() &gt;= 3)) {</span>
+<span class="fc" id="L70">				peliLoppui = true;</span>
+<span class="fc" id="L71">				System.out.println(&quot;\t KOLME VOITTOA - PELI PÄÄTTYY &quot;);</span>
+			}
+<span class="fc" id="L73">			System.out.println();</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">		} while (peliLoppui != true);</span>
+<span class="fc" id="L75">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span>RPSTestit (22 Apr 2023 15:56:02)</div></body></html>
